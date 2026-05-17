@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>בייגל'ז // בייגלים טריים ומנות אגדיות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Clean Instagram Dark Palette with Warm Accents --- */
+        :root {
+            --bg-dark: #0a0806; 
+            --bg-card: #12100e; 
+            --text-light: #fdfbf7; 
+            --text-muted: #a49e98; 
+            --accent: #4A3119; /* צבע חום לוגו מקורי */
+            --accent-gold: #d4b285; /* זהב עמום למחירים וכפתורים */
+            --accent-muted: rgba(212, 178, 133, 0.1);
+            --radius-sm: 6px; 
+            --radius-md: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Global Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rubik', 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 8, 6, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(212, 178, 133, 0.08);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand-logo {
+            font-size: clamp(1.4rem, 4vw, 1.7rem);
+            font-weight: 900;
+            color: var(--text-light);
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .brand-logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff;
+            padding: 11px 24px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: #5c3e21;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 49, 25, 0.4);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 16px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1010;
+            padding: 4px;
+            box-content: content-box;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-light);
+            transition: var(--transition);
+            transform-origin: right;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            position: relative;
+            background: radial-gradient(circle at 75% 35%, #22160e 0%, #0a0806 65%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10,8,6,0) 80%, #0a0806 100%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tagline {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            background: rgba(212, 178, 133, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            border: 1px solid rgba(212, 178, 133, 0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-bottom: 36px;
+            max-width: 540px;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-gold);
+            background: rgba(212, 178, 133, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-image-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(214, 178, 133, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 10%;
+            left: 10%;
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* --- Menu Section --- */
+        .menu-section {
+            padding: 120px 0;
+            border-top: 1px solid rgba(212, 178, 133, 0.05);
+            background: linear-gradient(180deg, #0a0806 0%, #0d0b09 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4.5vw, 2.6rem);
+            margin-bottom: 14px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #161310;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+            padding: 12px 24px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--text-light);
+            color: var(--bg-dark);
+            border-color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 32px;
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 178, 133, 0.04);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 178, 133, 0.2);
+            box-shadow: 0 15px 35px rgba(74, 49, 25, 0.25);
+        }
+
+        .card-img-container {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 26px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .card-price {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: rgba(212, 178, 133, 0.08);
+            padding: 2px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- Experience Section --- */
+        .experience {
+            background: #070605;
+            padding: 120px 0;
+            border-top: 1px solid rgba(212, 178, 133, 0.05);
+            position: relative;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .exp-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .exp-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            transition: var(--transition);
+        }
+
+        .exp-img:hover {
+            transform: scale(1.02);
+            border-color: rgba(212, 178, 133, 0.3);
+        }
+
+        .exp-img.tall {
+            grid-row: span 2;
+            height: 376px;
+        }
+
+        .exp-content h2 {
+            font-size: clamp(2rem, 4.5vw, 2.4rem);
+            margin-bottom: 20px;
+        }
+
+        .exp-content p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #030202;
+            padding: 100px 0 40px 0;
+            border-top: 1px solid rgba(212, 178, 133, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 80px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 16px;
+            max-width: 280px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: #12100e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .footer-socials a:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a, .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--text-light);
+            padding-right: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Breakpoints & Responsive Enhancements --- */
+        @media (max-width: 992px) {
+            .hero-grid, .exp-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 48px;
+            }
+            .hero {
+                padding-top: 110px;
+                padding-bottom: 60px;
+            }
+            .hero-content, .exp-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero p, .exp-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .nav-container {
+                height: 70px;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 85%;
+                max-width: 300px;
+                height: 100vh;
+                background: #0d0b09;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: var(--transition);
+                box-shadow: 20px 0 40px rgba(0,0,0,0.9);
+                z-index: 1005;
+                border-right: 1px solid rgba(212, 178, 133, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 8px 0;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-3px, 2px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-3px, -2px);
+            }
+            
+            /* Horizontal Swipe for Tabs on Mobile Phones */
+            .menu-tabs {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 4px 4px 12px 4px;
+                margin-left: -20px;
+                margin-right: -20px;
+                padding-left: 20px;
+                padding-right: 20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .menu-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .card-img-container {
+                height: 220px;
+            }
+            
+            .exp-images {
+                gap: 10px;
+            }
+            .exp-img {
+                height: 130px;
+            }
+            .exp-img.tall {
+                height: 270px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .menu-tabs {
+                margin-left: -16px;
+                margin-right: -16px;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .hero-btns {
+                width: 100%;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-btns .btn-outline, .hero-btns .nav-cta {
+                width: 100%;
+                text-align: center;
+                padding: 14px 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">בייגל<span>'ז</span></a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" onclick="toggleMenu()">בית</a></li>
+                <li><a href="#menu" onclick="toggleMenu()">הבייגלים שלנו</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">הסיפור שלנו</a></li>
+                <li><a href="#footer" onclick="toggleMenu()">צור קשר</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="#menu" class="nav-cta">תפריט</a>
+                <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-tagline"><i class="fa-solid fa-fire-burner" style="font-size: 0.8rem; margin-left: 4px;"></i> נעשה בעבודת יד בכל יום</span>
+                <h1>חומרי גלם איכותיים יותר.<br>בייגלים גדולים יותר.</h1>
+                <p>אצלנו לא תמצאו מנות גורמה קטנות. רק בייגלים מפוצצים בכל טוב, עמוסים בנקניקים מובחרים שנפרסים במקום, רטבי בית ייחודיים וקראנץ' מושלם שנאפה ישירות לתוך הבצק.</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="nav-cta" style="padding: 14px 32px;">לתפריט שלנו</a>
+                    <a href="#experience" class="btn-outline">איך אנחנו מרכיבים את זה</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://cdn.discordapp.com/attachments/1501628017321967696/1505592595198382191/image.png?ex=6a0b2fdf&is=6a09de5f&hm=a79ba6e5fa2e7207cee2c85e9f2d3884ea0c3dfb81c3c07a29bcbdfd45776741&" alt="בייגל איטלקי עמוס ומושלם" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>הנבחרת שלנו</h2>
+                <p>נאפה ומורכב במקום לפי הזמנה עם נתחי דלי פרימיום, ירקות רעננים וממרחים תוצרת בית.</p>
+            </div>
+
+            <div class="menu-tabs">
+                <button class="tab-btn active" onclick="filterMenu('all')">כל המנות</button>
+                <button class="tab-btn" onclick="filterMenu('subs')">בייגל ספיישל</button>
+                <button class="tab-btn" onclick="filterMenu('breakfast')">ארוחות בוקר</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card" data-category="subs">
+                    <div class="card-img-container">
+                        <img src="https://cdn.discordapp.com/attachments/1501628017321967696/1505588405017252050/image.png?ex=6a0b2bf8&is=6a09da78&hm=cf77fe09dd347e050146134cd38044f5fc2c732cc34aa2c916fca79a43b0dd39&" alt="בייגל איטלקי קלאסי" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <h3 class="card-title">האיטלקי המקורי</h3>
+                            <span class="card-price">₪49</span>
+                        </div>
+                        <p class="card-desc">סלמי גנואה, פפרוני פיקנטי, חזה בקר פרימיום, גבינת פרובולון, חסה קצוצה, עגבניות, בצל סגול וויניגרט הבית.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="subs">
+                    <div class="card-img-container">
+                        <img src="https://cdn.discordapp.com/attachments/1501628017321967696/1505591999565136003/image.png?ex=6a0b2f51&is=6a09ddd1&hm=12d202869ea1d778bce7d01514777072e5d25b03a8dce2e865173e2b5dd86da2&" alt="פסטרמה חמה מוקרמת" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <h3 class="card-title">קורנביף חם ומוקרם</h3>
+                            <span class="card-price">₪54</span>
+                        </div>
+                        <p class="card-desc">הר של פסטרמה חמה צרובה באש, גבינה שווייצרית נמסה, מלפפון חמוץ במלח ושכבה נדיבה של חרדל חום פיקנטי.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="breakfast">
+                    <div class="card-img-container">
+                        <img src="https://cdn.discordapp.com/attachments/1501628017321967696/1505591297006633181/image.png?ex=6a0b2ea9&is=6a09dd29&hm=10426e48783a8da4bd2bcf11680d87e7fe3b2c098b5683e44f8674a56af30b31&" alt="כריך ביצה ובייקון" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <h3 class="card-title">קומבו בוקר</h3>
+                            <span class="card-price">₪38</span>
+                        </div>
+                        <p class="card-desc">שתי ביצי עין, אווז מעושן פריך בחיתוך עבה, גבינת צ'דר חדה ומיונז ספייסי בתוך בייגל בריוש קלוי.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container exp-grid">
+            <div class="exp-images">
+                <img src="https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=400&q=80" alt="חיתוך לחם טרי" class="exp-img tall">
+                <img src="https://images.unsplash.com/photo-1540713434306-5850587b614d?auto=format&fit=crop&w=400&q=80" alt="ממרח טרי על כריך" class="exp-img">
+                <img src="https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?auto=format&fit=crop&w=400&q=80" alt="בייגל חם וקלוי" class="exp-img">
+            </div>
+            <div class="exp-content">
+                <span class="hero-tagline">החזון שלנו</span>
+                <h2>בלי פוזות. פשוט בייגל מעולה.</h2>
+                <p>התחלנו עם חוק אחד פשוט: כריך הוא טוב בדיוק כמו הקראסט שמחזיק אותו. זו הסיבה שהבייגלים שלנו נאפים במקום בכל בוקר, ללא פשרות ובלי קיצורי דרך.</p>
+                <p>מחיתוך דק של הנקניקים ועד לבחירת גבינות הפרימיום האמיתיות, אנחנו מתרכזים בלבנות לכם ארוחת צהריים מאוזנת, מאסיבית ומשביעה שתחזיק אתכם לאורך כל היום.</p>
+                <a href="#menu" class="btn-outline">הזמנה לאיסוף עצמי</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="brand-logo">בייגל<span>'ז</span></a>
+                    <p>בייגלים מפוצצים ומנות קומפורט פוד אגדיות שמוגשות נקי, טרי ומהר.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/bagelz.ono/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>שעות פעילות</h4>
+                    <p style="margin-bottom: 6px;">ראשון - חמישי, שבת: 12:00 - 22:30</p>
+                    <p>או עד אחרון הבייגלים</p>
+                </div>
+                <div class="footer-col">
+                    <h4>ניווט באתר</h4>
+                    <ul>
+                        <li><a href="#hero">דף הבית</a></li>
+                        <li><a href="#menu">התפריט שלנו</a></li>
+                        <li><a href="#experience">הפילוסופיה</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>המיקום שלנו</h4>
+                    <p style="margin-bottom: 6px;">הנשיא 57</p>
+                    <p style="margin-bottom: 6px;">קרית אונו, ישראל</p>
+                    <p>Takeaway & Delivery</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 בייגל'ז קרית אונו. כל הזכויות שמורות.</p>
+                <p>עיצוב מותג נקי ומינימליסטי</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 768) {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            }
+        }
+
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if(window.event) {
+                window.event.target.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 200);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 30) {
+                header.style.background = 'rgba(10, 8, 6, 0.98)';
+                header.style.padding = '4px 0';
+            } else {
+                header.style.background = 'rgba(10, 8, 6, 0.85)';
+                header.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>
