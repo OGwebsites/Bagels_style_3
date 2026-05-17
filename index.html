@@ -21,7 +21,8 @@
             --accent-muted: rgba(212, 178, 133, 0.1);
             --radius-sm: 6px; 
             --radius-md: 12px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* אנימציה חלקה ויוקרתית יותר */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* --- Global Reset --- */
@@ -70,8 +71,8 @@
             width: 100%;
             z-index: 1000;
             background: rgba(10, 8, 6, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(212, 178, 133, 0.08);
             transition: var(--transition);
         }
@@ -89,6 +90,12 @@
             color: var(--text-light);
             letter-spacing: -0.5px;
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .brand-logo:hover {
+            transform: scale(1.02);
+            opacity: 0.95;
         }
 
         .brand-logo span {
@@ -117,11 +124,12 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background-color: var(--accent-gold);
             transition: var(--transition);
+            transform: translateX(-50%);
         }
 
         .nav-links a:hover::after {
@@ -132,6 +140,29 @@
             display: flex;
             align-items: center;
             gap: 16px;
+        }
+
+        /* כפתור טלפון עליון משמאל */
+        .nav-phone-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 178, 133, 0.2);
+            color: var(--accent-gold);
+            padding: 10px 18px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .nav-phone-btn:hover {
+            background: rgba(212, 178, 133, 0.1);
+            border-color: var(--accent-gold);
+            color: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 178, 133, 0.15);
         }
 
         .nav-cta {
@@ -151,8 +182,8 @@
         .nav-cta:hover {
             background: #5c3e21;
             border-color: var(--accent-gold);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 49, 25, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 49, 25, 0.5);
         }
 
         .menu-toggle {
@@ -174,7 +205,54 @@
             height: 2px;
             background-color: var(--text-light);
             transition: var(--transition);
-            transform-origin: right;
+            transform: rotate(0);
+        }
+
+        /* --- Floating Actions (Side Buttons) --- */
+        .floating-actions {
+            position: fixed;
+            left: 24px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
+        }
+
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-btn.instagram {
+            background: #12100e;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .floating-btn.instagram:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.12) translateY(-4px);
+            box-shadow: 0 12px 30px rgba(212, 178, 133, 0.3);
+            color: var(--accent-gold);
+        }
+
+        .floating-btn.phone {
+            background: #e76f51; /* צבע הכתום הייעודי מהתמונה */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-btn.phone:hover {
+            background: #f4a261;
+            transform: scale(1.12) translateY(-4px);
+            box-shadow: 0 12px 30px rgba(231, 111, 81, 0.5);
         }
 
         /* --- Hero Section --- */
@@ -222,6 +300,13 @@
             padding: 4px 12px;
             border-radius: 50px;
             border: 1px solid rgba(212, 178, 133, 0.15);
+            transition: var(--transition);
+        }
+        
+        .hero-tagline:hover {
+            background: rgba(212, 178, 133, 0.18);
+            border-color: var(--accent-gold);
+            transform: translateX(-3px);
         }
 
         .hero h1 {
@@ -259,7 +344,8 @@
         .btn-outline:hover {
             border-color: var(--accent-gold);
             background: rgba(212, 178, 133, 0.05);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.02);
         }
 
         .hero-image-wrapper {
@@ -279,8 +365,14 @@
             left: 10%;
             z-index: -1;
             filter: blur(20px);
+            transition: var(--transition);
+        }
+        
+        .hero-image-wrapper:hover::after {
+            background: radial-gradient(circle, rgba(214, 178, 133, 0.25) 0%, rgba(0,0,0,0) 70%);
         }
 
+        /* מסגרת עבה ושקופה משופרת ורספונסיבית */
         .hero-img {
             width: 100%;
             max-width: 440px;
@@ -288,8 +380,18 @@
             aspect-ratio: 1/1;
             object-fit: cover;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            outline: 7px solid rgba(255, 255, 255, 0.12);
+            outline-offset: 6px;
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            transform: scale(1.03) translateY(-4px);
+            outline: 7px solid rgba(212, 178, 133, 0.25);
+            border-color: rgba(212, 178, 133, 0.4);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.8);
         }
 
         /* --- Menu Section --- */
@@ -342,7 +444,8 @@
             background: var(--text-light);
             color: var(--bg-dark);
             border-color: var(--text-light);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         .menu-grid {
@@ -363,9 +466,9 @@
         }
 
         .menu-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 178, 133, 0.2);
-            box-shadow: 0 15px 35px rgba(74, 49, 25, 0.25);
+            transform: translateY(-8px);
+            border-color: rgba(212, 178, 133, 0.3);
+            box-shadow: 0 20px 40px rgba(74, 49, 25, 0.35);
         }
 
         .card-img-container {
@@ -382,7 +485,7 @@
         }
 
         .menu-card:hover .card-img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .card-body {
@@ -410,6 +513,12 @@
             padding: 2px 10px;
             border-radius: 4px;
             white-space: nowrap;
+            transition: var(--transition);
+        }
+        
+        .menu-card:hover .card-price {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
         }
 
         .card-desc {
@@ -444,14 +553,19 @@
             height: 180px;
             object-fit: cover;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 24px rgba(0,0,0,0.4);
             transition: var(--transition);
+            outline: 6px solid rgba(255, 255, 255, 0.1);
+            outline-offset: 4px;
         }
 
         .exp-img:hover {
-            transform: scale(1.02);
-            border-color: rgba(212, 178, 133, 0.3);
+            transform: scale(1.04) translateY(-3px);
+            border-color: rgba(212, 178, 133, 0.4);
+            outline: 6px solid rgba(212, 178, 133, 0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            z-index: 5;
         }
 
         .exp-img.tall {
@@ -516,7 +630,8 @@
             background: var(--accent-gold);
             color: var(--bg-dark);
             border-color: var(--accent-gold);
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(212, 178, 133, 0.3);
         }
 
         .footer-col h4 {
@@ -534,11 +649,12 @@
         .footer-col ul li a, .footer-col p {
             color: var(--text-muted);
             font-size: 0.95rem;
+            transition: var(--transition);
         }
 
         .footer-col ul li a:hover {
             color: var(--text-light);
-            padding-right: 4px;
+            padding-right: 6px;
         }
 
         .footer-bottom {
@@ -588,6 +704,15 @@
             .nav-container {
                 height: 70px;
             }
+            
+            /* הסתרת כפתור הטלפון המילולי במובייל לטובת כפתור צף קומפקטי */
+            .nav-phone-btn span {
+                display: none;
+            }
+            .nav-phone-btn {
+                padding: 10px 12px;
+            }
+
             .menu-toggle {
                 display: flex;
             }
@@ -623,13 +748,13 @@
             }
 
             .menu-toggle.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-3px, 2px);
+                transform: rotate(-45deg) translate(-4px, 3px);
             }
             .menu-toggle.active span:nth-child(2) {
                 opacity: 0;
             }
             .menu-toggle.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-3px, -2px);
+                transform: rotate(45deg) translate(-4px, -3px);
             }
             
             /* Horizontal Swipe for Tabs on Mobile Phones */
@@ -662,9 +787,20 @@
             }
             .exp-img {
                 height: 130px;
+                outline-width: 4px;
             }
             .exp-img.tall {
                 height: 270px;
+            }
+            .floating-actions {
+                left: 16px;
+                bottom: 24px;
+                gap: 12px;
+            }
+            .floating-btn {
+                width: 46px;
+                height: 46px;
+                font-size: 1.15rem;
             }
         }
 
@@ -702,8 +838,34 @@
 </head>
 <body>
 
+    <script>
+        const INSTAGRAM_URL = "https://www.instagram.com/bagelz.ono?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+        const PHONE_NUMBER = "0559295785";
+        
+        // הגדרת הקישורים אוטומטית בטעינת הדף
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".insta-link").forEach(el => el.href = INSTAGRAM_URL);
+            document.querySelectorAll(".phone-link").forEach(el => el.href = `tel:${PHONE_NUMBER}`);
+            document.querySelectorAll(".phone-text").forEach(el => el.textContent = PHONE_NUMBER);
+        });
+    </script>
+
+    <div class="floating-actions">
+        <a href="#" target="_blank" class="floating-btn instagram insta-link" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="floating-btn phone phone-link" aria-label="Call Us">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
     <header>
         <div class="container nav-container">
+            <a href="#" class="nav-phone-btn phone-link">
+                <i class="fa-solid fa-phone"></i>
+                <span class="phone-text">0559295785</span>
+            </a>
+
             <a href="#" class="brand-logo">בייגל<span>'ז</span></a>
             
             <ul class="nav-links" id="navLinks">
@@ -762,7 +924,7 @@
                     <div class="card-body">
                         <div class="card-meta">
                             <h3 class="card-title">האיטלקי המקורי</h3>
-                            <span class="card-price">₪49</span>
+                            <span class="card-price">₪?</span>
                         </div>
                         <p class="card-desc">סלמי גנואה, פפרוני פיקנטי, חזה בקר פרימיום, גבינת פרובולון, חסה קצוצה, עגבניות, בצל סגול וויניגרט הבית.</p>
                     </div>
@@ -775,7 +937,7 @@
                     <div class="card-body">
                         <div class="card-meta">
                             <h3 class="card-title">קורנביף חם ומוקרם</h3>
-                            <span class="card-price">₪54</span>
+                            <span class="card-price">₪?</span>
                         </div>
                         <p class="card-desc">הר של פסטרמה חמה צרובה באש, גבינה שווייצרית נמסה, מלפפון חמוץ במלח ושכבה נדיבה של חרדל חום פיקנטי.</p>
                     </div>
@@ -788,7 +950,7 @@
                     <div class="card-body">
                         <div class="card-meta">
                             <h3 class="card-title">קומבו בוקר</h3>
-                            <span class="card-price">₪38</span>
+                            <span class="card-price">₪?</span>
                         </div>
                         <p class="card-desc">שתי ביצי עין, אווז מעושן פריך בחיתוך עבה, גבינת צ'דר חדה ומיונז ספייסי בתוך בייגל בריוש קלוי.</p>
                     </div>
@@ -800,9 +962,9 @@
     <section id="experience" class="experience">
         <div class="container exp-grid">
             <div class="exp-images">
-                <img src="https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=400&q=80" alt="חיתוך לחם טרי" class="exp-img tall">
-                <img src="https://images.unsplash.com/photo-1540713434306-5850587b614d?auto=format&fit=crop&w=400&q=80" alt="ממרח טרי על כריך" class="exp-img">
-                <img src="https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?auto=format&fit=crop&w=400&q=80" alt="בייגל חם וקלוי" class="exp-img">
+                <img src="https://cdn.discordapp.com/attachments/1505594566059884574/1505594864006332506/image.png?ex=6a0b31fc&is=6a09e07c&hm=1f0b1c2ae2ff99cde493f11ac8ec7cbb91322b67da6c93e5c7411f349493c0ab&" alt="חיתוך לחם טרי" class="exp-img tall">
+                <img src="https://cdn.discordapp.com/attachments/1505594566059884574/1505628303174795304/image.png?ex=6a0b5120&is=6a09ffa0&hm=22aeafdf3dd616fa6b408aaa9691b611449e4189fa36e348cfd7977f83da7a65&" alt="ממרח טרי על כריך" class="exp-img">
+                <img src="https://cdn.discordapp.com/attachments/1505594566059884574/1505628662077063381/image.png?ex=6a0b5176&is=6a09fff6&hm=7aad527584b5e623f5134b71603cb63fbe18e48c214448455fc9e4a265514172&" alt="בייגל חם וקלוי" class="exp-img">
             </div>
             <div class="exp-content">
                 <span class="hero-tagline">החזון שלנו</span>
@@ -821,9 +983,8 @@
                     <a href="#" class="brand-logo">בייגל<span>'ז</span></a>
                     <p>בייגלים מפוצצים ומנות קומפורט פוד אגדיות שמוגשות נקי, טרי ומהר.</p>
                     <div class="footer-socials">
-                        <a href="https://www.instagram.com/bagelz.ono/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="insta-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="phone-link" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -843,7 +1004,7 @@
                     <h4>המיקום שלנו</h4>
                     <p style="margin-bottom: 6px;">הנשיא 57</p>
                     <p style="margin-bottom: 6px;">קרית אונו, ישראל</p>
-                    <p>Takeaway & Delivery</p>
+                    <p class="phone-link" style="cursor:pointer; margin-top:8px; color:var(--accent-gold); font-weight:500;"><i class="fa-solid fa-phone" style="margin-left:5px;"></i><span class="phone-text">0559295785</span></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -874,7 +1035,7 @@
 
             const cards = document.querySelectorAll('.menu-card');
             cards.forEach(card => {
-                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
                 if (category === 'all' || card.getAttribute('data-category') === category) {
                     card.style.display = 'block';
                     setTimeout(() => {
@@ -886,19 +1047,19 @@
                     card.style.transform = 'scale(0.95)';
                     setTimeout(() => {
                         card.style.display = 'none';
-                    }, 200);
+                    }, 300);
                 }
             });
         }
 
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 30) {
-                header.style.background = 'rgba(10, 8, 6, 0.98)';
+            if (window.scrollY > 50) {
                 header.style.padding = '4px 0';
+                header.style.background = 'rgba(10, 8, 6, 0.95)';
             } else {
-                header.style.background = 'rgba(10, 8, 6, 0.85)';
                 header.style.padding = '0';
+                header.style.background = 'rgba(10, 8, 6, 0.85)';
             }
         });
     </script>
